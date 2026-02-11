@@ -1,0 +1,15 @@
+# Benjamin AI Agent - Dependencies
+
+# LLM Providers (kies wat je nodig hebt)
+# Gratis opties (aanbevolen):
+transformers>=4.30.0  # Voor HuggingFace modellen (lokaal)
+torch>=2.0.0  # Voor lokale modellen (optioneel, maar aanbevolen)
+requests>=2.28.0  # Voor HuggingFace Inference API
+
+# Alternatieven:
+# ollama>=0.1.0  # Lokaal, gratis (installeer Ollama apart)
+# openai>=1.0.0  # Betaald (GPT-4, GPT-3.5)
+
+# Optioneel: voor geavanceerde memory/vector storage
+# numpy>=1.24.0
+# sentence-transformers>=2.2.0
