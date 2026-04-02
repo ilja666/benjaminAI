@@ -1,0 +1,2 @@
+# CACS MVP has no external runtime dependencies.
+# Developed and validated with Python 3.11.

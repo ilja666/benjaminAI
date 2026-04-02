@@ -1,0 +1,123 @@
+{
+  "scenario_id": "service_recovery_v1",
+  "title": "Service Recovery Sandbox",
+  "description": "A bounded digital environment where the agent must restore a broken service by diagnosing dependency and configuration issues in the correct causal order.",
+  "goal": {
+    "target_service_state": "running",
+    "required_conditions": {
+      "config_valid": true,
+      "dependency_installed": true,
+      "service_running": true
+    }
+  },
+  "world": {
+    "objects": {
+      "config": {
+        "type": "file",
+        "state": "invalid"
+      },
+      "dependency": {
+        "type": "package",
+        "state": "missing"
+      },
+      "service": {
+        "type": "process",
+        "state": "stopped"
+      }
+    },
+    "relations": [
+      {
+        "source": "service",
+        "relation": "depends_on",
+        "target": "dependency"
+      },
+      {
+        "source": "service",
+        "relation": "configured_by",
+        "target": "config"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "inspect_config",
+      "type": "observe",
+      "effects": []
+    },
+    {
+      "name": "inspect_dependency",
+      "type": "observe",
+      "effects": []
+    },
+    {
+      "name": "inspect_service",
+      "type": "observe",
+      "effects": []
+    },
+    {
+      "name": "fix_config",
+      "type": "intervene",
+      "effects": [
+        {
+          "object": "config",
+          "new_state": "valid"
+        }
+      ]
+    },
+    {
+      "name": "install_dependency",
+      "type": "intervene",
+      "effects": [
+        {
+          "object": "dependency",
+          "new_state": "installed"
+        }
+      ]
+    },
+    {
+      "name": "start_service",
+      "type": "intervene",
+      "effects": [
+        {
+          "object": "service",
+          "new_state": "running"
+        }
+      ]
+    }
+  ],
+  "causal_rules": [
+    {
+      "if": {
+        "action": "start_service",
+        "config": "valid",
+        "dependency": "installed"
+      },
+      "then": {
+        "service": "running",
+        "outcome": "success"
+      }
+    },
+    {
+      "if": {
+        "action": "start_service",
+        "config": "invalid"
+      },
+      "then": {
+        "service": "stopped",
+        "outcome": "failure",
+        "reason": "invalid_config"
+      }
+    },
+    {
+      "if": {
+        "action": "start_service",
+        "dependency": "missing"
+      },
+      "then": {
+        "service": "stopped",
+        "outcome": "failure",
+        "reason": "missing_dependency"
+      }
+    }
+  ]
+}
