@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slot Machine</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="machine">
+    <div id="title">LUCKY SLOTS</div>
+
+    <div id="display">
+      <div class="reel-wrapper">
+        <div class="reel" id="reel0">
+          <div class="reel-inner" id="inner0"></div>
+        </div>
+      </div>
+      <div class="reel-wrapper">
+        <div class="reel" id="reel1">
+          <div class="reel-inner" id="inner1"></div>
+        </div>
+      </div>
+      <div class="reel-wrapper">
+        <div class="reel" id="reel2">
+          <div class="reel-inner" id="inner2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="payline-indicator"></div>
+
+    <div id="info-bar">
+      <div class="info-item">
+        <span class="label">CREDITS</span>
+        <span class="value" id="credits">100</span>
+      </div>
+      <div class="info-item">
+        <span class="label">BET</span>
+        <span class="value" id="bet-display">1</span>
+      </div>
+      <div class="info-item">
+        <span class="label">WIN</span>
+        <span class="value" id="win-display">0</span>
+      </div>
+    </div>
+
+    <div id="message" class="hidden"></div>
+
+    <div id="controls">
+      <button id="btn-bet-min" class="btn-secondary">BET MIN</button>
+      <button id="btn-bet-down" class="btn-secondary">BET -</button>
+      <button id="btn-spin" class="btn-primary">SPIN</button>
+      <button id="btn-bet-up" class="btn-secondary">BET +</button>
+      <button id="btn-bet-max" class="btn-secondary">BET MAX</button>
+    </div>
+
+    <div id="paytable-toggle">
+      <button id="btn-paytable" class="btn-info">PAYTABLE</button>
+    </div>
+
+    <div id="paytable" class="hidden">
+      <h3>PAYTABLE</h3>
+      <table id="pay-table-content"></table>
+      <p class="rtp-info">RTP: <span id="rtp-value"></span>%</p>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="slot.js"></script>
+</body>
+</html>
